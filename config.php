@@ -4,7 +4,7 @@ define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'kepegawaian');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('OPENROUTER_API_KEY', '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');
+define('OPENROUTER_API_KEY', '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');
 
 try {
   $pdo = new PDO(
