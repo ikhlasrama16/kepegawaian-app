@@ -18,18 +18,19 @@ Aplikasi ini juga mendukung **generate draft kontrak dengan AI** (menggunakan [O
 
 Pastikan project diletakkan di folder `htdocs` (jika menggunakan XAMPP):
 
-```bash
+
 C:\xampp\htdocs\pegawai-app
 
 
 Akses aplikasi di browser:
 
-http://localhost/pegawai-app/public
+http://localhost/pegawai-app/
 
 2. Setup Database
 
 Jalankan SQL berikut di phpMyAdmin / MySQL client:
 
+```sql
 CREATE DATABASE kepegawaian CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE kepegawaian;
 
@@ -64,11 +65,12 @@ CREATE TABLE pegawai (
   FOREIGN KEY (jabatan_id) REFERENCES jabatan(id) ON DELETE SET NULL,
   FOREIGN KEY (kontrak_id) REFERENCES kontrak(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
+```
 
 3. Konfigurasi Database
 
 Edit file config.php sesuai database lokal kamu:
-
+```php
 <?php
 $host = 'localhost';
 $db   = 'kepegawaian';
@@ -82,6 +84,7 @@ $pdo = new PDO($dsn, $user, $pass, [
 
 // 🔑 Tambahkan API Key OpenRouter di sini jika ingin generate AI
 $OPENROUTER_KEY = "ISI_API_KEY_KAMU_DI_SINI";
+```
 
 4. Generate Kontrak dengan AI (Opsional)
 
