@@ -1,4 +1,35 @@
-/*run on sql */
+📌 README.md
+
+# 🧑‍💼 Aplikasi Manajemen Kepegawaian
+
+Aplikasi sederhana berbasis **PHP Native + MySQL** untuk mengelola:
+
+- Jabatan
+- Kontrak
+- Pegawai
+
+Aplikasi ini juga mendukung **generate draft kontrak dengan AI** (menggunakan [OpenRouter](https://openrouter.ai)).
+
+---
+
+## ⚙️ Persiapan
+
+### 1. Clone / Download Project
+
+Pastikan project diletakkan di folder `htdocs` (jika menggunakan XAMPP):
+
+```bash
+C:\xampp\htdocs\pegawai-app
+
+
+Akses aplikasi di browser:
+
+http://localhost/pegawai-app/public
+
+2. Setup Database
+
+Jalankan SQL berikut di phpMyAdmin / MySQL client:
+
 CREATE DATABASE kepegawaian CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE kepegawaian;
 
@@ -34,3 +65,32 @@ CREATE TABLE pegawai (
   FOREIGN KEY (kontrak_id) REFERENCES kontrak(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
+3. Konfigurasi Database
+
+Edit file config.php sesuai database lokal kamu:
+
+<?php
+$host = 'localhost';
+$db   = 'kepegawaian';
+$user = 'root';
+$pass = '';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+$pdo = new PDO($dsn, $user, $pass, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+]);
+
+// 🔑 Tambahkan API Key OpenRouter di sini jika ingin generate AI
+$OPENROUTER_KEY = "ISI_API_KEY_KAMU_DI_SINI";
+
+4. Generate Kontrak dengan AI (Opsional)
+
+Jika tombol Generate Draft AI tidak berfungsi:
+
+Daftar di OpenRouter
+
+Ambil API Key
+
+Paste ke dalam config.php:
+define('OPENROUTER_API_KEY', 'xxxxxxxxx');
+```
