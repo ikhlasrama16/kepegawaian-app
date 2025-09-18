@@ -71,19 +71,11 @@ CREATE TABLE pegawai (
 
 Edit file config.php sesuai database lokal kamu:
 ```php
-<?php
-$host = 'localhost';
-$db   = 'kepegawaian';
-$user = 'root';
-$pass = '';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-$pdo = new PDO($dsn, $user, $pass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
-
-// 🔑 Tambahkan API Key OpenRouter di sini jika ingin generate AI
-$OPENROUTER_KEY = "ISI_API_KEY_KAMU_DI_SINI";
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'kepegawaian');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('OPENROUTER_API_KEY', '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');
 ```
 
 4. Generate Kontrak dengan AI (Opsional)
